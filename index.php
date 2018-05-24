@@ -148,7 +148,6 @@ $(document).ready(function(){
 		<center> <img class="img-fluid logo" src="aa.png" style="width:80%;height:100%;"> </center>
 
 	</a>
-
 		<div class="modal-body" id = "chooseCandidate">
 
             <hr>
@@ -243,8 +242,7 @@ $(document).ready(function(){
 					document.getElementById("OR").style.display ="none";
 					document.getElementById("okay_button").style.display ="block";
 					document.getElementById("backRef").style.display ="block";
-					document.getElementById("blk").style.display="none";
-					document.getElementById("agree_name").style.display="none";
+					// document.getElementById("agree_name").style.display="none";
 					document.getElementById("ckAgree").style.display="none";
 					
 				 }
@@ -307,7 +305,7 @@ $(document).ready(function(){
 		</div>
 
     </div>
-	
+
 	</div>
 
 </div>
@@ -738,7 +736,7 @@ $(document).ready(function(){
 
 
 
-					<!-- 		<div class="col-md-6">
+							<div class="col-md-6">
 
 									<div id="other_div" class="form-group label-floating">
 
@@ -748,7 +746,7 @@ $(document).ready(function(){
 
 			      					</div>
 
-								</div> -->
+							</div>
 								
 								<div class="col-md-6">
 								
@@ -756,8 +754,8 @@ $(document).ready(function(){
 
 										<label class="control-label" for="source">Application Source<span class="text-danger">*</span></label>
 
-										<select id="source" name="sourcex" class="select form-control" onchange="showsource(this)">
-										
+										<select id="source" name="sourcex" class="select form-control" onchange="showsource(this)" >
+
 											<?php  
 				      							include('connect.php');
 				      							$sql = "SELECT * FROM `tbl_sourceapplication` WHERE flag = '0'";
@@ -773,17 +771,11 @@ $(document).ready(function(){
 				      						?>
 
 										</select>
-									  	
+
 										<span style="color: red;display:none;" id="sourcevalidator">Select Application Source.</span>
-										
+
 									</div>
-										<div id="" class="form-group label-floating" >
-
-										<input type="text" style="display:none;"  name="other_source" placeholder="Position" class="form-control" id="othersourceDiv" required/>
-
-										<div class="help-block with-errors" id="othersourceDiv2" style="color: red"></div>
-
-								</div>
+									
 								</div>
 
 							</div>
@@ -1371,7 +1363,7 @@ $(document).ready(function(){
 
 					<!-- for married ones -->
 
-					<div id="married_div" class="row col-md-12" style="display: none;">
+					<div id="married_div" class="row col-md-12">
 
 						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
 
@@ -1427,7 +1419,7 @@ $(document).ready(function(){
 
 								<!-- for widowed ones -->
 
-					<div id="widowed_div" class="row col-md-12" style="display: none;">
+					<div id="widowed_div" class="row col-md-12">
 
 						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
 
@@ -1593,8 +1585,8 @@ $(document).ready(function(){
                               <div class="form-group label-floating">
 
                                 <label class="control-label" for="sage">Age</label>
-
-                                <input id="sage" class="form-control" type="number" name="sibling_age1" min="0" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+                                
+                                <input type="text" class="form-control" name="sibling_age1" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
 
                               </div>
 
@@ -1626,7 +1618,7 @@ $(document).ready(function(){
 
                                 <label class="control-label" for="sage">Age</label>
 
-                                <input id="sage" class="form-control" type="number" name="sibling_age2" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+                               <input type="text" class="form-control" name="sibling_age2" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
 
                               </div>
 
@@ -1660,7 +1652,7 @@ $(document).ready(function(){
 
                                 <label class="control-label" for="sage">Age</label>
 
-                                <input id="sage" class="form-control" type="number" name="sibling_age3" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+                                <input type="text" class="form-control" name="sibling_age3" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
 
                               </div>
 
@@ -3253,7 +3245,6 @@ $(document).ready(function(){
 			if(value=="Others"){
 
 				
-
 				document.getElementById("otherpositionDiv").required = true;
 
 				$("#otherpositionDiv").css("display","block");
@@ -3273,16 +3264,8 @@ $(document).ready(function(){
 			
 
 			});
-			
-			$("#source").on('change', function(e) {
 
-				$("#othersourceDiv").css("display","none");
-
-				$("#othersourceDiv2").css("display","none");
-
-			});
-		    document.getElementById('container2').style.display='none';/*hide all containers !first*/
-
+		    // document.getElementById('container2').style.display='none';/*hide all containers !first*/
 
 		    // document.getElementById('container3').style.display='none';/*hide all containers !first*/
 
@@ -3292,13 +3275,13 @@ $(document).ready(function(){
 
 		    // document.getElementById('container6').style.display='none';/*hide all containers !first*/
 
-		    // document.getElementById('other_div').style.display='none';/*hide specify civil status*/
+		    document.getElementById('other_div').style.display='none';/*hide specify civil status*/
 
 		    document.getElementById('married_div').style.display='none';/*hide married status*/
 
 		    document.getElementById('widowed_div').style.display='none';/*hide widowed status*/
 
-		    // document.getElementById('souceothers').style.display='none';
+		    document.getElementById('souceothers').style.display='none';
 
 		    document.getElementById('country').style.display='none';
 
@@ -3398,7 +3381,7 @@ $(document).ready(function(){
 
             document.getElementById("srcs").value = sources;
 
-            document.getElementById("srcsspec").value = sourcespec;
+            // document.getElementById("srcsspec").value = sourcespec;
 
         });
 
@@ -3493,6 +3476,8 @@ $(document).ready(function(){
 		function countryfunction(selectedCountry){
 
 			$( "#birthPlaceCountry" ).val( selectedCountry.options[selectedCountry.selectedIndex].text )
+
+
 
 			var country = $('#countryid').val();
 
@@ -4367,16 +4352,6 @@ $(document).ready(function(){
 
 		   }
 
- 			else if (elem.value == "Single") {
-
-		   		document.getElementById('married_div').style.display = "none";
-
-		   		document.getElementById('widowed_div').style.display = "none";
-
-		   		document.getElementById('other_div').style.display = "none";
-
-		   }
-
 		  else{
 
 		  		document.getElementById('other_div').style.display = "none";
@@ -4606,7 +4581,7 @@ $(document).ready(function(){
 
                         x++; //text box increment
 
-                        $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="sibling" >Enter sibling name</label><input type="text" id="sibling" class="form-control" name="sibling' + x + '"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="sage">Age</label><input id="sage" name="sibling_age' + x + '" class="form-control" type="number"/></div></div><button type=button style="margin-top: 7%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
+                       $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="sibling" >Enter sibling name</label><input type="text" id="sibling" class="form-control" name="sibling' + x + '"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="sage">Age</label><input id="sage" name="sibling_age' + x + '" class="form-control" type="text" onkeypress=return disableLettersOthers(event); maxlength="2"/></div></div><button type=button style="margin-top: 7%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
 
                     }
 
