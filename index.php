@@ -97,7 +97,7 @@
 		__gaTracker('send','pageview');
 
 	</script>
-=
+
 <script>
 
 $(document).ready(function(){
@@ -700,13 +700,13 @@ $(document).ready(function(){
 
 								<div class="col-md-6">
 
-									<div class="form-group label-static">
+									<div class="form-group label-floating">
 
 										<label for="cstatus" class="control-label">Civil Status<label class="text-danger">*</label></label>
 
 				      					<select id="cstatus" class="select form-control" name="cstatus" onchange="showspec(this)">
 
-				      						<option selected disabled hidden>Select Civil Status</option>
+				      						<option selected disabled hidden value="Select Civil Status">Select Civil Status</option>
 
 				      						<option value="Single">Single</option>
 
@@ -722,7 +722,7 @@ $(document).ready(function(){
 
 				      					</select>
 
-				      					<span style="color: red;display:none;" id="cstatusvalidator">Select Civil Status.</span>
+				      					<span style="color: red;display:none;" id="cstatusvalidator">Please select one</span>
 
 									</div>
 
@@ -754,15 +754,16 @@ $(document).ready(function(){
 
 										<label class="control-label" for="source">Application Source<span class="text-danger">*</span></label>
 
-										<select id="source" name="sourcex" class="select form-control" onchange="showsource(this)" >
+										<select id="source" name="sourcex" class="select form-control" onchange="showsource(this)" required>
+											<option selected disabled value="Select Source">Select Source</option>
+											<?php
 
-											<?php  
 				      							include('connect.php');
 				      							$sql = "SELECT * FROM `tbl_sourceapplication` WHERE flag = '0'";
 				      							$result = $conn->query($sql);
 				      							while($row = $result->fetch_assoc()){
 				      								if ($row['application_num'] == 10) {
-				      									echo "<option value='".$row['source_name']."' selected>".$row['source_name']."</option>";
+				      									echo "<option value='".$row['source_name']."'>".$row['source_name']."</option>";
 				      								}
 				      								else{
 				      									echo "<option value='".$row['source_name']."'>".$row['source_name']."</option>";		
@@ -772,7 +773,7 @@ $(document).ready(function(){
 
 										</select>
 
-										<span style="color: red;display:none;" id="sourcevalidator">Select Application Source.</span>
+										<span style="color:red; display:none;" id="sourcevalidator">Select Application Source.</span>
 
 									</div>
 									
@@ -1227,8 +1228,6 @@ $(document).ready(function(){
 										<input class="form-control" data-inputmask="'mask': '(+999) 999-999-9999'" type="text" name="contact_details" id="contactpersonno" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" required>
 
 										<div class="help-block with-errors" style="color: red"></div>
-
-								
 
 								</div>
 

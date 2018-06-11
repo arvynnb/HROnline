@@ -101,7 +101,7 @@ background: none;
                             <!--Anderson Recruitment Management System (ARMS)-->
                             
 				<p>&nbsp &nbsp &nbsp Anderson Recruits is an online recruitment system which can be accessed by corporate recruiters via web browsers anytime.The system offers sophisticated features such as real-time online application form, candidate search etc. What's more, a powerful filtering technology is incorporated to let HR professionals screen out unqualified candidates and reduce their workload. With the Candidate Alert technology and customizable searching criteria, the system will automatically search on the database for the newly registered job seekers and alert the users to ensure that they don’t miss out on any talents. The Human Resources department implemented this system in order to automate many of the tasks of the application process.</p>
-					<p>Developers :</p><CENTER>
+					<CENTER>
 						<p style="font-size:12px;"><strong>Arth Da&ntilde;o &nbsp|&nbsp
 						John Loyd Camince &nbsp|&nbsp
 						Edward John Flores &nbsp|&nbsp
@@ -109,8 +109,12 @@ background: none;
 						Raiven Kenn Lopez  &nbsp|&nbsp
                         Jomariette Kristine Suarez  &nbsp|&nbsp
                         Neco Caramonte &nbsp|&nbsp
-                    	Mark Arjel Cabais</strong></p></br></CENTER>
-                        <h6 class="text-muted" align="center">version 2.0</h6>
+                    	Mark Arjel Cabais &nbsp|&nbsp
+                    	John Edrell Abong &nbsp|&nbsp
+                    	Bryan Diola
+                    	</strong></p></br>
+					</CENTER>
+                        <h6 class="text-muted" align="center">Version 3.0</h6>
 					</div>
 						
 					</div>
