@@ -384,7 +384,7 @@ $(document).ready(function(){
 		      							if(isset($_GET['position']) && !empty($_GET['position'])){		      								
 
 											echo "<input readonly type='text' id='apply_position' class='form-control' value='".$_GET['position']."' name='position_name' >";
-
+											echo'<div id="positionErrorMessage" style="display:none;color:red;">Select your position here.</div>';
 		      							}else{
 										
 
@@ -420,7 +420,7 @@ $(document).ready(function(){
 
 								<div id="" class="form-group label-floating" >
 
-										<input type="text" style="display:none;"  name="other_position" placeholder="Position" class="form-control" id="otherpositionDiv" required/>
+										<input type="text" style="display:none;"  name="other_position" placeholder="Position" class="form-control" id="otherpositionDiv" />
 
 										<div class="help-block with-errors" id="otherpositionDiv2" style="color: red"></div>
 
@@ -520,10 +520,11 @@ $(document).ready(function(){
 
 								<div class="input-group" id="salarygroup">
 
-									<select id="salary" class="select form-control" name="salaryexpectation" >
-
-										<option value="0" id='intern'>0</option>
-
+									<select id="salary" class="select form-control" name="salaryexpectation" required>
+                                       
+                                        
+										<option value="" id='intern' >Select Salary Here</option>
+                                        
 										<option value="10,000.00 - 15,000.00">&#8369;10,000.00 - &#8369;15,000.00</option>
 
 										<option value="16,000.00 - 20,000.00">&#8369;16,000.00 - &#8369;20,000.00</option>
@@ -545,7 +546,9 @@ $(document).ready(function(){
 									</select><span class="input-group-addon add-on"><span  class="fa fa-arrow-down"></span>
 
 								</div>
-
+                                <div class="help-block with-errors" style="color: red;">
+							    	<span style="color: red;display:none;" id="salary_validator">Select Salary Here.</span>
+								</div>
 							</div>
 
 						</div>						
@@ -594,8 +597,10 @@ $(document).ready(function(){
 
 								<label for="mname" class="control-label" >Middle Name</label>
 
-								<input type="text" name="mname" ng-model="mname" id="mname" minlength="2" maxlength="30" class="form-control" onkeypress='return disableNumeric(event);' onkeyup='(event);'>
+								<input type="text" name="mname" ng-model="mname" id="mname" minlength="2" maxlength="30" class="form-control" onkeypress='return disableNumeric(event);' onkeyup='(event);' required>
 								
+                                <div class="help-block with-errors" style="color: red"></div>
+                                
 							</div>
 
 							<div class="form-group label-floating">
@@ -818,7 +823,7 @@ $(document).ready(function(){
 				      <select class="select form-control" name="Country_name" id="countryid" onchange="countryfunction(this)">
 				      		<?php  
       							include('connect.php');
-      							$sql = "SELECT * FROM `tbl_country`";
+      							$sql = "SELECT * FROM `tbl_country` ORDER BY `Country_name`";
       							$result = $conn->query($sql);
       							while($row = $result->fetch_assoc()){
       							echo "<option value='".$row['Country_name']."'>".$row['Country_name']."</option>";
@@ -870,91 +875,13 @@ $(document).ready(function(){
 					<div class="row col-md-12">
 
 						<div class="col-md-6">
-
-							<label>Height</label>
-
-							<div class="row">
-
-								<div class="col-md-6">
-
-									<div class="form-group label-floating">
-
-										<label for="feet" class="control-label">Feet (ft.)</label>
-
-										<input type="text" name="feet" id="feet" minlength="0" class="form-control" id="pounds" maxlength="1" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-									</div>
-
-								</div>
-
-								<div class="col-md-6">
-
-									<div class="form-group label-floating">
-
-										<label for="inches" class="control-label">Inches (in.)</label>
-
-										<input type="text" name="inch" id="inches" minlength="0" class="form-control" id="pounds" maxlength="3" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label for="bloodtype" class="control-label">Blood type</label>
-
-								<select class="select form-control" id="bloodtype" name="btype">
-
-									<option value="A+">A+</option>
-									<option value="Am">A&#45;</option>
-
-									<option value="BA">B+</option>
-									<option value="Bm">B&#45;</option>
-
-									<option value="AB+">AB+</option>
-									<option value="ABm"> AB&#45;</option>
-
-									<option value="O+">O+</option>
-									<option value="Om">O&#45;</option>
-
-								</select>
-
-							</div>
-
-						</div>
-
-
-
-						<div class="col-md-6">
-
-							<label>Weight</label>
-
-							<div class="form-group label-floating">
-
-								<label for="pounds" class="control-label">Pounds (lbs:) (1kg = 2.20 lbs)</label>
-
-								<input type="text" name="weight" id="weight" class="form-control" id="pounds" maxlength="3" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-							</div>
-
 							<div class="form-group label-floating">
 
 								<label for="religion" class="control-label" onkeypress='return disableNumeric(event);' onkeyup='(event);' >Religion</label>
 
-								<input type="text" name="religion123" class="form-control" id="religion" maxlength="20" onkeypress='return disableNumeric(event);' onkeyup='(event);'>
+								<input type="text" name="religion123" class="form-control" id="religion" maxlength="30" onkeypress='return disableNumeric(event);' onkeyup='(event);'>
 
 							</div>
-
-						</div>
-
-					</div>
-
-					<div class="row col-md-12">
-
-						<div class="col-md-6">
-
 							<label>Select Current Address<label class="text-danger">*</label></label>
 
 							<div class="form-group label-floating">
@@ -1089,7 +1016,7 @@ $(document).ready(function(){
 
 										<label class="control-label" for="skype">Skype User Id</label>
 
-										<input type="text" name="skype_userid" class="form-control" id="skype">
+										<input type="text" name="skype_userid" class="form-control" id="skype" maxlength="32">
 
 									</div>
 
@@ -1101,7 +1028,7 @@ $(document).ready(function(){
 
 										<label class="control-label" for="facebook">Facebook account</label>
 
-										<input class="form-control" type="text" id="fbact" name="facebook">
+										<input class="form-control" type="text" id="fbact" name="facebook" maxlength="50">
 
 									</div>
 
@@ -1117,7 +1044,7 @@ $(document).ready(function(){
 
 											<span class="input-group-addon">@</span>
 
-											<input class="form-control" id="twact" type="text" name="twitter">
+											<input class="form-control" id="twact" type="text" name="twitter" maxlength="15">
 
 										</div>
 
@@ -1349,484 +1276,6 @@ $(document).ready(function(){
 				</div>
 
 
-
-				<div class="card container">
-
-					<!-- <img class="img" src="lady liberty.png" style=" width: 85%;"> -->
-
-					<!-- <a class="btn btn-raised btn-sm btn-primary pull-right" value="" id="saveQuit3" style="color:white;float:right;text-decoration:none;margin-top:2%;">Save and Quit</a> -->
-
-					<h6 style="padding-top: 30px"><i class="fa fa-group"> </i><b> FAMILY BACKGROUND</b></h6>
-
-					<hr style="padding-bottom: 10px;">
-
-					<!-- for married ones -->
-
-					<div id="married_div" class="row col-md-12">
-
-						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
-
-						<div class="col-md-6">
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="slname">Spouse's Last Name</label>
-
-					      		<input id="slname" type="text" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event);' onkeyup='(event);' >
-
-							</div>
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="sfname">Spouse's First Name</label>
-
-					      		<input id="sfname" type="text" name="spouse_firstname" maxlength="50" class="form-control" name="spouse_lastname" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="smname">Spouse's Middle Name</label>
-
-					      		<input id="smname" type="text" name="spouse_midname" maxlength="50" class="form-control" name="spouse_lastname" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-						</div>
-
-						<div class="col-md-6">
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="occupation">Spouse's Occupation</label>
-
-								<input type="text" name="spouse_occ" id="occupation" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="employer-name">Company Name</label>
-
-								<input type="text" name="spouse_empname" id="employer-name" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-						</div>
-
-					</div> <!-- end for married ones -->
-
-								<!-- for widowed ones -->
-
-					<div id="widowed_div" class="row col-md-12">
-
-						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
-
-						<div class="col-md-6">
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="slname">Spouse's Last Name</label>
-
-					      		<input id="slname" type="text" name="widowed_lname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="sfname">Spouse's First Name</label>
-
-					      		<input id="sfname" type="text" name="widowed_fname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-					      		<label class="control-label" for="smname">Spouse's Middle Name</label>
-
-					      		<input id="smname" type="text" name="widowed_midname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-						</div>
-
-						<div class="col-md-6">
-
-						</div> 
-
-					</div> <!-- end for widowed ones -->
-
-					<div class="row col-md-12">
-
-						<div class="col-md-6">
-
-							<h3 style="padding-top: 3%;" align="center">Father's Information</h3>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="flname">Father's Last name</label>
-
-								<input type="text" name="flname" id="flname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="ffname">Father's First Name</label>
-
-								<input type="text" name="ffname" id="ffname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="fmname">Father's Middle Name</label>
-
-								<input type="text" name="fmname" id="fmname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-								<label class="control-label" for="fplace_birth">Place of Birth</label>
-								<input type="text" name="father_placebirth" id="fplace_birth" class="form-control" data-toggle="modal" data-target="#modalFPB"  readonly>
-							</div>
-
-						</div>
-
-						<div class="col-md-6">
-
-							<h3 style="padding-top: 3%;" align="center">Mother's Information</h3>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="mlname">Mother's Maiden name</label>
-
-								<input type="text" name="mother_lname" id="mlname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="mfname">Mother's First Name</label>
-
-								<input type="text" name="mother_fname" id="mfname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="mmname">Mother's Middle Name</label>
-
-								<input type="text" name="mother_midname" id="mmname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-							</div>
-
-							<div class="form-group label-floating">
-
-								<label class="control-label" for="mplace_birth">Place of Birth</label>
-
-								<input type="text" name="mother_placebirth" id="mplace_birth" class="form-control" data-toggle="modal" data-target="#modalMPB" readonly>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col-md-12">
-
-						<label class="switch col-md-4">
-
-							<input id="positive" type="checkbox"/>
-
-							<div class="slider round"></div>
-
-						</label>
-
-						<h5 class="col-md-5">  Do you have child/Children?</h5>	
-
-					</div>
-
-
-
-                    <div class="wawsibling btn-group-sm"  id="siblings">
-
-                    	<div class="row">
-
-                    		<div class="col-md-12">	
-
-                      			<button type="button" class="btn btn-sm btn-raised btn-info add_field_button_sibling">Add Sibling</button>
-
-                    		</div>
-
-                    	</div>
-
-                      <div class="input_fields_wrap_sibling">
-
-                        <div class="row col-md-12">
-
-                          <div class="col-md-6">
-
-                            <div class="col-md-7">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sibling" >Enter sibling name</label>
-
-                                <input type="text" name="sibling1" id="sibling" class="form-control" onkeypress='return disableNumeric(event);'>
-
-                              </div>
-
-                            </div> 
-
-                            <div class="col-md-3">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sage">Age</label>
-                                
-                                <input type="text" class="form-control" name="sibling_age1" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-                              </div>
-
-                            </div>
-
-                          </div>
-
-                        </div> <!-- second sibling -->
-
-                        <div class="row col-md-12">
-
-                          <div class="col-md-6">
-
-                            <div class="col-md-7">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sibling" >Enter sibling name</label>
-
-                                <input type="text" name="sibling2" id="sibling" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-                              </div>
-
-                            </div> 
-
-                            <div class="col-md-3">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sage">Age</label>
-
-                               <input type="text" class="form-control" name="sibling_age2" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-                              </div>
-
-                            </div>
-
-                            <button type="button" style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger pull-right remove_field" >Remove</button>
-
-                          </div>
-
-                        </div><!-- third sibling -->
-
-                        <div class="row col-md-12" >
-
-                          <div class="col-md-6">
-
-                            <div class="col-md-7">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sibling" >Enter sibling name</label>
-
-                                <input type="text" name="sibling3" id="sibling" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-                              </div>
-
-                            </div> 
-
-                            <div class="col-md-3">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="sage">Age</label>
-
-                                <input type="text" class="form-control" name="sibling_age3" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
-
-                              </div>
-
-                            </div>
-
-                            <button type="button" style="margin-top: 8%" class="btn btn-raised btn-danger btn-sm pull-right remove_field">Remove</button>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-
-
-                    <div class="wawchild btn-group-sm" id="children" style="display: none;">
-
-                      <div class="input_fields_wrap">
-
-                        <div class="row col-md-12">
-
-                        <div class="col-md-6">
-
-                            <!-- fillings -->
-
-                          </div>
-
-                        <div class="col-md-6">
-
-                          <button type="button" class="btn btn-raised btn-sm btn-info add_field_button">Add Dependents</button>
-
-                        </div>
-
-                          <div class="col-md-6">
-
-                            <!-- fillings -->
-
-                          </div>
-
-	                    </div>
-
-	                    <div class="row col-md-12" id="1chi">
-
-	                    	<div class="col-md-6">
-
-	                    		<!-- fillings -->
-
-	                    	</div>
-
-	                    	<div class="col-md-6">
-
-	                            <div class="col-md-7">
-
-	                              <div class="form-group label-floating">
-
-	                                <label class="control-label" for="child" >Enter child name</label>
-
-	                                <input type="text" name="child_name1" id="child" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-	                              </div>
-
-	                            </div> 
-
-	                            <div class="col-md-3">
-
-	                              <div class="form-group label-floating">
-
-	                                <label class="control-label" for="age">Age</label>
-
-	                                <input id="age" class="form-control" type="number" name="child_age1" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
-
-	                              </div>
-
-	                            </div>
-
-	                        </div>
-
-	                    </div>
-
-                        <div class="row col-md-12" id="2chi">
-
-                          <div class="col-md-6">
-
-                            <!-- fillings -->
-
-                          </div>
-
-                          <div class="col-md-6">
-
-                            <div class="col-md-7">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="child" >Enter child name</label>
-
-                                <input type="text" name="child_name2" id="child" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-                              </div>
-
-                            </div> 
-
-                            <div class="col-md-3">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="age">Age</label>
-
-                                <input id="age" class="form-control" type="number" name="child_age2" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
-
-                              </div>
-
-                            </div>
-
-                            <button type=button style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger pull-right remove_field">Remove</button>
-
-                          </div>
-
-                        </div>
-
-                        <div class="row col-md-12" id="3chi">
-
-                          <div class="col-md-6">
-
-                            <!-- fillings -->
-
-                          </div>
-
-                          <div class="col-md-6">
-
-                            <div class="col-md-7">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="child" >Enter child name</label>
-
-                                <input type="text" name="child_name3" id="child" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
-
-                              </div>
-
-                            </div> 
-
-                            <div class="col-md-3">
-
-                              <div class="form-group label-floating">
-
-                                <label class="control-label" for="age">Age</label>
-
-                                <input id="age" class="form-control" type="number" name="child_age3" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
-
-                              </div>
-
-                            </div>
-
-                            <button type=button style="margin-top: 8%" class="btn btn-raised btn-danger btn-sm pull-right remove_field">Remove</button>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-					<!-- buttons -->
-
-					<!-- <button type="button" class="btn btn-raised btn-primary pull-left" onclick="document.getElementById('container2').style.display='block';document.getElementById('container3').style.display='none';">PREVIOUS</button>
-
-					<button type="button" style="margin-bottom: 1%" class="btn btn-raised btn-primary pull-right" onclick="document.getElementById('container3').style.display='none'; document.getElementById('container4').style.display='block';">NEXT</button>	 -->
-
-				</div> <!-- end of container 3 -->
-
-
-
 				<!-- START OF FATHER'S BIRTH PLACE MODAL -->
 				<div id="modalFPB" class="modal fade" role="dialog" >
 					<div class="modal-dialog">
@@ -1849,7 +1298,7 @@ $(document).ready(function(){
 									<select class="form-control" name="fCountry_name" id="fcountryid" onchange="fcountryfunction(this)">
 									    <?php  
 					      					include('connect.php');
-					      					$sql = "SELECT * FROM `tbl_country`";
+					      					$sql = "SELECT * FROM `tbl_country` ORDER BY `Country_name`";
 					      					$result = $conn->query($sql);
 					      					while($row = $result->fetch_assoc()){
 					      					echo "<option value='".$row['Country_name']."'>".$row['Country_name']."</option>";
@@ -1923,7 +1372,7 @@ $(document).ready(function(){
 
 					      					include('connect.php');
 
-					      					$sql = "SELECT * FROM `tbl_country`";
+					      					$sql = "SELECT * FROM `tbl_country` ORDER BY `Country_name`";
 
 					      					$result = $conn->query($sql);
 
@@ -2187,7 +1636,9 @@ $(document).ready(function(){
 
 	                    			<label class="control-label" for="school">Name of School</label>
 
-	                    			<input type="text" name="elem_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+	                    			<input type="text" name="elem_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);' required>
+                                    
+                                    <div class="help-block with-errors" style="color: red"></div>
 
 	                    		</div>
 
@@ -2234,8 +1685,10 @@ $(document).ready(function(){
 
 	                    			<label class="control-label" for="school">Name of School</label>
 
-	                    			<input type="" name="hs_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+	                    			<input type="" name="hs_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);' required>
 
+                                    <div class="help-block with-errors" style="color: red"></div>
+                                    
 	                    		</div>
 
 	                    	</div>
@@ -2293,8 +1746,10 @@ $(document).ready(function(){
 
 		                    			<label class="control-label" for="school">Name of School</label>
 
-		                    			<input type="" name="col_name" id="col_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+		                    			<input type="" name="col_name" id="col_name" class="form-control" id="school" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);' required>
 
+                                        <div class="help-block with-errors" style="color: red"></div>
+                                        
 		                    		</div>
 
 		                    	</div>
@@ -2903,6 +2358,481 @@ $(document).ready(function(){
                 </div><!-- end of container 5 -->
 
 				<!-- Start of container 6 -->
+				
+				<div class="card container">
+
+					<!-- <img class="img" src="lady liberty.png" style=" width: 85%;"> -->
+
+					<!-- <a class="btn btn-raised btn-sm btn-primary pull-right" value="" id="saveQuit3" style="color:white;float:right;text-decoration:none;margin-top:2%;">Save and Quit</a> -->
+
+					<h6 style="padding-top: 30px"><i class="fa fa-group"> </i><b> FAMILY BACKGROUND</b></h6>
+
+					<hr style="padding-bottom: 10px;">
+
+					<!-- for married ones -->
+
+					<div id="married_div" class="row col-md-12">
+
+						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
+
+						<div class="col-md-6">
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="slname">Spouse's Last Name</label>
+
+					      		<input id="slname" type="text" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event);' onkeyup='(event);' >
+
+							</div>
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="sfname">Spouse's First Name</label>
+
+					      		<input id="sfname" type="text" name="spouse_firstname" maxlength="50" class="form-control" name="spouse_lastname" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="smname">Spouse's Middle Name</label>
+
+					      		<input id="smname" type="text" name="spouse_midname" maxlength="50" class="form-control" name="spouse_lastname" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="occupation">Spouse's Occupation</label>
+
+								<input type="text" name="spouse_occ" id="occupation" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="employer-name">Company Name</label>
+
+								<input type="text" name="spouse_empname" id="employer-name" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+						</div>
+
+					</div> <!-- end for married ones -->
+
+								<!-- for widowed ones -->
+
+					<div id="widowed_div" class="row col-md-12">
+
+						<h2 style="padding-top: 2%;" align="center"> Spouse </h2>
+
+						<div class="col-md-6">
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="slname">Spouse's Last Name</label>
+
+					      		<input id="slname" type="text" name="widowed_lname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="sfname">Spouse's First Name</label>
+
+					      		<input id="sfname" type="text" name="widowed_fname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+					      		<label class="control-label" for="smname">Spouse's Middle Name</label>
+
+					      		<input id="smname" type="text" name="widowed_midname" class="form-control" name="spouse_lastname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+						</div> 
+
+					</div> <!-- end for widowed ones -->
+
+					<div class="row col-md-12">
+
+						<div class="col-md-6">
+
+							<h3 style="padding-top: 3%;" align="center">Father's Information</h3>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="flname">Father's Last name</label>
+
+								<input type="text" name="flname" id="flname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="ffname">Father's First Name</label>
+
+								<input type="text" name="ffname" id="ffname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="fmname">Father's Middle Name</label>
+
+								<input type="text" name="fmname" id="fmname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+								<label class="control-label" for="fplace_birth">Place of Birth</label>
+								<input type="text" name="father_placebirth" id="fplace_birth" class="form-control" data-toggle="modal" data-target="#modalFPB"  readonly>
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+							<h3 style="padding-top: 3%;" align="center">Mother's Information</h3>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="mlname">Mother's Maiden name</label>
+
+								<input type="text" name="mother_lname" id="mlname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="mfname">Mother's First Name</label>
+
+								<input type="text" name="mother_fname" id="mfname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="mmname">Mother's Middle Name</label>
+
+								<input type="text" name="mother_midname" id="mmname" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+							</div>
+
+							<div class="form-group label-floating">
+
+								<label class="control-label" for="mplace_birth">Place of Birth</label>
+
+								<input type="text" name="mother_placebirth" id="mplace_birth" class="form-control" data-toggle="modal" data-target="#modalMPB" readonly>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-12">
+
+						<label class="switch col-md-4">
+
+							<input id="positive" type="checkbox"/>
+
+							<div class="slider round"></div>
+
+						</label>
+
+						<h5 class="col-md-5">  Do you have child/Children?</h5>	
+
+					</div>
+
+
+
+                    <div class="wawsibling btn-group-sm"  id="siblings">
+
+                    	<div class="row">
+
+                    		<div class="col-md-12">	
+
+                      			<button type="button" class="btn btn-sm btn-raised btn-info add_field_button_sibling">Add Sibling</button>
+
+                    		</div>
+
+                    	</div>
+
+                      <div class="input_fields_wrap_sibling">
+
+                        <div class="row col-md-12">
+
+                          <div class="col-md-6">
+
+                            <div class="col-md-7">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sibling" >Enter sibling name</label>
+
+                                <input type="text" name="sibling1" id="sibling" class="form-control" onkeypress='return disableNumeric(event);'>
+
+                              </div>
+
+                            </div> 
+
+                            <div class="col-md-3">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sage">Age</label>
+                                
+                                <input type="text" class="form-control" name="sibling_age1" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div> <!-- second sibling -->
+
+                        <div class="row col-md-12">
+
+                          <div class="col-md-6">
+
+                            <div class="col-md-7">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sibling" >Enter sibling name</label>
+
+                                <input type="text" name="sibling2" id="sibling" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+                              </div>
+
+                            </div> 
+
+                            <div class="col-md-3">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sage">Age</label>
+
+                               <input type="text" class="form-control" name="sibling_age2" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
+
+                              </div>
+
+                            </div>
+
+                            <button type="button" style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger pull-right remove_field" >Remove</button>
+
+                          </div>
+
+                        </div><!-- third sibling -->
+
+                        <div class="row col-md-12" >
+
+                          <div class="col-md-6">
+
+                            <div class="col-md-7">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sibling" >Enter sibling name</label>
+
+                                <input type="text" name="sibling3" id="sibling" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+                              </div>
+
+                            </div> 
+
+                            <div class="col-md-3">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="sage">Age</label>
+
+                                <input type="text" class="form-control" name="sibling_age3" id="sage" minlength="1" class="form-control" maxlength="2" onkeypress='return disableLettersOthers(event);' onkeyup='(event);'>
+
+                              </div>
+
+                            </div>
+
+                            <button type="button" style="margin-top: 8%" class="btn btn-raised btn-danger btn-sm pull-right remove_field">Remove</button>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="wawchild btn-group-sm" id="children" style="display: none;">
+
+                      <div class="input_fields_wrap">
+
+                        <div class="row col-md-12">
+
+                        <div class="col-md-6">
+
+                            <!-- fillings -->
+
+                          </div>
+
+                        <div class="col-md-6">
+
+                          <button type="button" class="btn btn-raised btn-sm btn-info add_field_button">Add Dependents</button>
+
+                        </div>
+
+                          <div class="col-md-6">
+
+                            <!-- fillings -->
+
+                          </div>
+
+	                    </div>
+
+	                    <div class="row col-md-12" id="1chi">
+
+	                    	<div class="col-md-6">
+
+	                    		<!-- fillings -->
+
+	                    	</div>
+
+	                    	<div class="col-md-6">
+
+	                            <div class="col-md-7">
+
+	                              <div class="form-group label-floating">
+
+	                                <label class="control-label" for="child" >Enter child name</label>
+
+	                                <input type="text" name="child_name1" id="child" maxlength="50" class="form-control" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+	                              </div>
+
+	                            </div> 
+
+	                            <div class="col-md-3">
+
+	                              <div class="form-group label-floating">
+
+	                                <label class="control-label" for="age">Age</label>
+
+	                                <input id="age" class="form-control" type="text" name="child_age1" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+
+	                              </div>
+
+	                            </div>
+
+	                        </div>
+
+	                    </div>
+
+                        <div class="row col-md-12" id="2chi">
+
+                          <div class="col-md-6">
+
+                            <!-- fillings -->
+
+                          </div>
+
+                          <div class="col-md-6">
+
+                            <div class="col-md-7">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="child" >Enter child name</label>
+
+                                <input type="text" name="child_name2" id="child" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+                              </div>
+
+                            </div> 
+
+                            <div class="col-md-3">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="age">Age</label>
+
+                                <input id="age" class="form-control" type="text" name="child_age2" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+
+                              </div>
+
+                            </div>
+
+                            <button type=button style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger pull-right remove_field">Remove</button>
+
+                          </div>
+
+                        </div>
+
+                        <div class="row col-md-12" id="3chi">
+
+                          <div class="col-md-6">
+
+                            <!-- fillings -->
+
+                          </div>
+
+                          <div class="col-md-6">
+
+                            <div class="col-md-7">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="child" >Enter child name</label>
+
+                                <input type="text" name="child_name3" id="child" class="form-control" maxlength="50" onkeypress='return disableNumeric(event)'; onkeyup='(event);'>
+
+                              </div>
+
+                            </div> 
+
+                            <div class="col-md-3">
+
+                              <div class="form-group label-floating">
+
+                                <label class="control-label" for="age">Age</label>
+
+                                <input id="age" class="form-control" type="text" name="child_age3" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
+
+                              </div>
+
+                            </div>
+
+                            <button type=button style="margin-top: 8%" class="btn btn-raised btn-danger btn-sm pull-right remove_field">Remove</button>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+					<!-- buttons -->
+
+					<!-- <button type="button" class="btn btn-raised btn-primary pull-left" onclick="document.getElementById('container2').style.display='block';document.getElementById('container3').style.display='none';">PREVIOUS</button>
+
+					<button type="button" style="margin-bottom: 1%" class="btn btn-raised btn-primary pull-right" onclick="document.getElementById('container3').style.display='none'; document.getElementById('container4').style.display='block';">NEXT</button>	 -->
+
+				</div> <!-- end of container 3 -->
 
 				<div class="card container">
 
@@ -4534,7 +4464,7 @@ $(document).ready(function(){
 
                         x++; //text box increment
 
-                        $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"></div><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="child" >Enter child name</label><input type="text" name="child_name' + x + '" id="child" class="form-control"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="age">Age</label><input id="age" class="form-control" type="number" name="child_age' + x + '"/></div></div><button type=button style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
+                        $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"></div><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="child" >Enter child name</label><input onkeypress="return disableNumeric(event)"; onkeyup="(event)" type="text" name="child_name' + x + ' " id="child" class="form-control"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="age">Age</label><input id="age" class="form-control" type="text"  onkeypress="return disableLettersOthers(event)"; onkeyup="(event)" maxlength="2" name="child_age' + x + '"/></div></div><button type=button style="margin-top: 8%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
 
                     }
 
@@ -4580,7 +4510,7 @@ $(document).ready(function(){
 
                         x++; //text box increment
 
-                       $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="sibling" >Enter sibling name</label><input type="text" id="sibling" class="form-control" name="sibling' + x + '"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="sage">Age</label><input id="sage" name="sibling_age' + x + '" class="form-control" type="text" onkeypress=return disableLettersOthers(event); maxlength="2"/></div></div><button type=button style="margin-top: 7%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
+                       $(wrapper).append('<div class="row col-md-12"><div class="col-md-6"><div class="col-md-7"><div class="form-group label-floating"><label class="control-label" for="sibling" >Enter sibling name</label><input onkeypress=" return disableNumeric(event)" onkeyup="(event)"type="text" id="sibling" class="form-control" name="sibling' + x + '"></div></div> <div class="col-md-3"><div class="form-group label-floating"><label class="control-label" for="sage">Age</label><input id="sage" name="sibling_age' + x + '" class="form-control" type="text" onkeypress="return disableLettersOthers(event)"; maxlength="2"/></div></div><button type=button style="margin-top: 7%" class="btn btn-raised btn-sm btn-danger remove_field pull-right">Remove</button></div></div>'); //add input box
 
                     }
 

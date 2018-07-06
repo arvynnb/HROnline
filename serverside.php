@@ -63,9 +63,9 @@ include("connect.php");
 	$bday123= $_POST['bday123']; 
 	$citizenship = mysqli_real_escape_string($conn,$_POST['citizen']);
 	
-	$height=mysqli_real_escape_string($conn,$_POST['feet']." ' " .$_POST['inch']);
-	$WEIGHT= mysqli_real_escape_string($conn,$_POST['weight']);
-	$BLOODTYPE= mysqli_real_escape_string($conn,$_POST['btype']);
+	// $height=mysqli_real_escape_string($conn,$_POST['feet']." ' " .$_POST['inch']);
+	// $WEIGHT= mysqli_real_escape_string($conn,$_POST['weight']);
+	// $BLOODTYPE= mysqli_real_escape_string($conn,$_POST['btype']);
 	$home_telnum= mysqli_real_escape_string($conn,$_POST['home_telnum']);
 	$EMAIL= mysqli_real_escape_string($conn,$_POST['email']);
 
@@ -571,10 +571,10 @@ $awards3 = $_POST['col_scholarship'];
 		 `3. Inclusive Dates`, `3.1 Employer's Name, Address and Phone`, `3.2 Position Title`, `3.3 Name_Position and Contact No. of Immediate Supervisor`, `3.4 Monthly Salary`, `3.5 Reason for Leaving`, `3.6 Emp_phone`,
 		 `4. Inclusive Dates`, `4.1 Employer's Name, Address and Phone`, `4.2 Position Title`, `4.3 Name_Position and Contact No. of Immediate Supervisor`, `4.4 Monthly Salary`, `4.5 Reason for Leaving`, `4.6 Emp_phone`,
 		 `5. Inclusive Dates`, `5.1 Employer's Name, Address and Phone`, `5.2 Position Title`, `5.3 Name_Position and Contact No. of Immediate Supervisor`, `5.4 Monthly Salary`, `5.5 Reason for Leaving`, `5.6 Emp_phone`, `CERTIFY`,
-		 `SALARY`, `HEIGHT`, `WEIGHT`, `BLOODTYPE`, `SKYPE_USERID`, `CONTACT NAME`, `CONTACT DETAILS`, `MOBILE_NUMBER`, `SPOUSE'S OCCUPATION`, `HOME_TELNUM`,`REFERENCE_NO`,`APPLICANT_STATUS`,`HAVE_CHILD`,`Status`,`source`) VALUES
+		 `SALARY`,  `SKYPE_USERID`, `CONTACT NAME`, `CONTACT DETAILS`, `MOBILE_NUMBER`, `SPOUSE'S OCCUPATION`, `HOME_TELNUM`,`REFERENCE_NO`,`APPLICANT_STATUS`,`HAVE_CHILD`,`Status`,`source`) VALUES
 
-		 ('$position', '$application_source', '$sched' , '$holidays' , '$empdate' , '$name' , '$lname', '$fname', '$mname', '$ename', '$nickname', '$sex', '$cstatus', '$citizenship', '$EMAIL', '$father_name' ,'$flname', '$ffname', '$fmidname' , '$mother_name', '$mlname' , '$mfname' , '$mmname' , '$bday123','$ONE_DATES', '$ONE_EMPNAME', '$ONE_POSITION', '$ONE_SUPERVISOR', '$ONE_SALARY', '$ONE_CONTACTNUM', '$ONE_REASON', '$TWO_DATES', '$TWO_EMPNAME', '$TWO_POSITION', '$TWO_SUPERVISOR', '$TWO_SALARY', '$TWO_REASON', '$TWO_CONTACTNUM',  '$THREE_DATES', '$THREE_EMPNAME', '$THREE_POSITION', '$THREE_SUPERVISOR', '$THREE_SALARY', '$THREE_REASON', '$THREE_CONTACTNUM', '$FOUR_DATES', '$FOUR_EMPNAME', '$FOUR_POSITION', '$FOUR_SUPERVISOR', '$FOUR_SALARY', '$FOUR_REASON', '$FOUR_CONTACTNUM', '$FIVE_DATES', '$FIVE_EMPNAME', '$FIVE_POSITION', '$FIVE_SUPERVISOR', '$FIVE_SALARY', '$FIVE_REASON ', '$FIVE_CONTACTNUM', '$CERTIFY', '$salary_expectation', '$height', '$WEIGHT', '$BLOODTYPE','$SKYPE_USERID', '$CONTACT_NAME', '$CONTACT_DETAILS', '$mobile_num', '$Spouse_occupation', '$home_telnum','$rand_str','$app_stat','$c_s_result','$application_status','application')";
-
+		 ('$position', '$application_source', '$sched' , '$holidays' , '$empdate' , '$name' , '$lname', '$fname', '$mname', '$ename', '$nickname', '$sex', '$cstatus', '$citizenship', '$EMAIL', '$father_name' ,'$flname', '$ffname', '$fmidname' , '$mother_name', '$mlname' , '$mfname' , '$mmname' , '$bday123','$ONE_DATES', '$ONE_EMPNAME', '$ONE_POSITION', '$ONE_SUPERVISOR', '$ONE_SALARY', '$ONE_CONTACTNUM', '$ONE_REASON', '$TWO_DATES', '$TWO_EMPNAME', '$TWO_POSITION', '$TWO_SUPERVISOR', '$TWO_SALARY', '$TWO_REASON', '$TWO_CONTACTNUM',  '$THREE_DATES', '$THREE_EMPNAME', '$THREE_POSITION', '$THREE_SUPERVISOR', '$THREE_SALARY', '$THREE_REASON', '$THREE_CONTACTNUM', '$FOUR_DATES', '$FOUR_EMPNAME', '$FOUR_POSITION', '$FOUR_SUPERVISOR', '$FOUR_SALARY', '$FOUR_REASON', '$FOUR_CONTACTNUM', '$FIVE_DATES', '$FIVE_EMPNAME', '$FIVE_POSITION', '$FIVE_SUPERVISOR', '$FIVE_SALARY', '$FIVE_REASON ', '$FIVE_CONTACTNUM', '$CERTIFY', '$salary_expectation', '$SKYPE_USERID', '$CONTACT_NAME', '$CONTACT_DETAILS', '$mobile_num', '$Spouse_occupation', '$home_telnum','$rand_str','$app_stat','$c_s_result','$application_status','application')";
+		
 }
 
 	if ($conn->query($sql) === TRUE) {
